@@ -1,12 +1,21 @@
 function sumArray(numbers) {
-    let newArray = [];
-    let arr = numbers.split("/", 2);
-    let array1 = arr[0].split(",", 3);
-    let array2 = arr[1].split(",", 3);
-  
-    for (let i = 0; i < array1.length; i++) {
-      newArray.push(Number(array1[i]) + Number(array2[i]));
+    const res=[]
+    // separo los arrays por el /
+    const separate=numbers.split("/")
+    
+    //los guardo segun su indice
+    const values1=separate[0].split(",")
+    const values2=separate[1].split(",")
+
+    //valido que tengan el mismo tamaño
+    if(values1.length == values2.length){
+      //por cada valor tomo el indice y el valor, asi la suma se guarda en el nuevo array
+      values1.forEach((element,index) => {
+        res.push(Number(element)+ Number(values2[index]))
+      });
+      return res
     }
-    console.log(newArray);
+    return "ERROR Length desigual"
   } 
   sumArray("1,2,3/3,2,1"); // print in console (4,4,4)
+  console.log(sumArray("1,3,4 / 2,3,1"))
